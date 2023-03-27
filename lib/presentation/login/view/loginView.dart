@@ -1,3 +1,7 @@
+import 'package:flu_proj/app/di.dart';
+import 'package:flu_proj/data/repository/repository_imp.dart';
+import 'package:flu_proj/domain/repository/repository.dart';
+import 'package:flu_proj/domain/usecase/loginUseCase.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
 import 'package:flu_proj/presentation/resourses/color_manager.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
@@ -15,11 +19,10 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel();
+  final LoginViewModel _viewModel =instance<LoginViewModel>();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
   _bind() {
     _viewModel.start();
     _userNameController.addListener(() {

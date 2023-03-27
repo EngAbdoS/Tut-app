@@ -7,6 +7,7 @@ import 'package:flu_proj/presentation/spalsh/spalsh_view.dart';
 import 'package:flu_proj/presentation/store_details/store_details_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/di.dart';
 import '../register/register_view.dart';
 
 class Routes {
@@ -24,7 +25,7 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
-      case Routes.loginRoute:
+      case Routes.loginRoute:initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) =>  const OnBoardingView());
