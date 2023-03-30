@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flu_proj">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+
         android:label="flu_proj"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:usesCleartextTraffic="true"
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"

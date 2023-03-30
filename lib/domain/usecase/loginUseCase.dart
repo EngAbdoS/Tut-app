@@ -23,3 +23,4 @@ class LoginUseCaseInput {
 
   LoginUseCaseInput(this.email, this.password);
 }
+

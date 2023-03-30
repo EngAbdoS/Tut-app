@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String APPLICATION_JSON = "application/json";
-const String CONTENT_TYPE = "content/type";
+const String CONTENT_TYPE = "content-type";
 const String ACCEPT = "accept";
 const String AUTHORIZATION = "authorization";
 const String DEAFUL_LANGAUGE = "langauge";
@@ -32,7 +32,7 @@ class DioFactory {
       sendTimeout: const Duration(milliseconds: Constants.apiTimeOut),
     );
 
-    if (kDebugMode) {
+    if (!kReleaseMode) {
       //not release
       dio.interceptors.add(PrettyDioLogger(
           requestHeader: true, requestBody: true, responseBody: true));

@@ -27,6 +27,7 @@ class RepositoryImp implements Repository {
               ApiInternalStatus.FAILURE));
         }
       } catch (error) {
+
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

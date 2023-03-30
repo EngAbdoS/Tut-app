@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final instance = GetIt.instance;
 
-Future<void> initAppModel() async {
+Future<void> initAppModule() async {
   final sharedPrefs = await SharedPreferences.getInstance();
   instance.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
 
