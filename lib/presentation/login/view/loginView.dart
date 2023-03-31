@@ -1,13 +1,10 @@
 import 'package:flu_proj/app/di.dart';
-import 'package:flu_proj/data/repository/repository_imp.dart';
-import 'package:flu_proj/domain/repository/repository.dart';
-import 'package:flu_proj/domain/usecase/loginUseCase.dart';
+import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
 import 'package:flu_proj/presentation/resourses/color_manager.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
 import 'package:flu_proj/presentation/resourses/values_manager.dart';
 import 'package:flutter/material.dart';
-
 import '../../resourses/assets_manager.dart';
 import '../../resourses/router_manager.dart';
 
@@ -41,13 +38,24 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return _getContentWidget();
+    return Scaffold(
+      backgroundColor: ColorManager.white,
+      body: StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context,snapshot){
+          return snapshot.data?.getScreenWidget(context, _getContentWidget(), (){
+            _viewModel.login();
+          })??_getContentWidget();
+
+        },
+      ),
+
+
+    );
   }
 
   Widget _getContentWidget() {
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Container(
+    return Container(
         padding: const EdgeInsets.only(top: AppPadding.p20 * 5),
         //color: ColorManager.white,
         child: SingleChildScrollView(
@@ -165,8 +173,8 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         ),
-      ),
-    );
+      )
+    ;
   }
 
   @override

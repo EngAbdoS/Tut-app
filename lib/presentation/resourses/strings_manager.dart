@@ -28,4 +28,8 @@ class AppStrings
   static const usernameError="Please enter your username";
   static const passwordError="Please enter your password";
 
+
+  static const loading="Loading...";
+static const retryAgain="Retry again";
+static const ok ="Ok";
 }

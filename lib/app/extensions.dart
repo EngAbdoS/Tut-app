@@ -10,7 +10,6 @@ extension NonNullString on String? {
   }
 }
 
-
 extension NonNullInteger on int? {
   int orZero() {
     if (this == null) {

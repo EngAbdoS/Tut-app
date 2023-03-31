@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flu_proj/domain/usecase/loginUseCase.dart';
 import 'package:flu_proj/presentation/base/base_view_model.dart';
+import 'package:flu_proj/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
 
 import '../../common/freezedDataClass.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
-   LoginViewModel(this._loginUseCase);
+  LoginViewModel(this._loginUseCase);
 
   final StreamController _userNameStreamController =
       StreamController<String>.broadcast(); //has many listeners
@@ -18,12 +20,13 @@ class LoginViewModel extends BaseViewModel
 
   var loginObject = LoginObject("", "");
 
-   final LoginUseCase _loginUseCase;
+  final LoginUseCase _loginUseCase;
 
   //login
 
   @override
   void dispose() {
+    super.dispose();
     _passwordStreamController.close();
     _userNameStreamController.close();
     _areAllInputsValidStreamController.close();
@@ -31,7 +34,7 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
+    inputState.add(ContentState());
   }
 
   @override
@@ -42,10 +45,17 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-   (await _loginUseCase.execute(
-           LoginUseCaseInput(loginObject.userName, loginObject.password)))
-       .fold((failure) => {print(failure.message)},
-           (data) => {print(data.customer?.name)});
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
+
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+            (failure) => {
+                  inputState.add(ErrorState(
+                      StateRendererType.popupErrorState, failure.message))
+                },
+            (data) => {inputState.add(ContentState())});
   }
 
 ///////output
