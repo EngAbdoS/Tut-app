@@ -1,4 +1,4 @@
-# flu_proj
+# first clean arch project
 
 A new Flutter project.
 
