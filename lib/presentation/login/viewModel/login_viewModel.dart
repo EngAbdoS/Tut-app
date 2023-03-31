@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flu_proj/domain/usecase/loginUseCase.dart';
 import 'package:flu_proj/presentation/base/base_view_model.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer.dart';
@@ -21,6 +20,9 @@ class LoginViewModel extends BaseViewModel
   var loginObject = LoginObject("", "");
 
   final LoginUseCase _loginUseCase;
+
+  StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<bool>();
 
   //login
 
@@ -54,8 +56,10 @@ class LoginViewModel extends BaseViewModel
             (failure) => {
                   inputState.add(ErrorState(
                       StateRendererType.popupErrorState, failure.message))
-                },
-            (data) => {inputState.add(ContentState())});
+                }, (data) {
+      inputState.add(ContentState());
+      isUserLoggedInSuccessfullyStreamController.add(true);
+    });
   }
 
 ///////output
