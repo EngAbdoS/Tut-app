@@ -34,4 +34,28 @@ class RepositoryImp implements Repository {
       return left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> forgotPassword(String email) async{
+
+
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.forgotPassword(email);
+        if (response.status == ApiInternalStatus.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return left(Failure(response.message ?? ResponceMessage.DEFAULT,
+              ApiInternalStatus.FAILURE));
+        }
+      } catch (error) {
+
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+    
+    
+  }
 }
