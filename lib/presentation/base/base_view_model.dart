@@ -7,7 +7,7 @@ abstract class BaseViewModel extends BaseViewModelInputs
   //shard variables and functions that will be used through any view model
 
   final StreamController _inputStreamController =
-      StreamController<FlowState>.broadcast();
+      StreamController<FlowState>.broadcast();//مسؤل عن الحالة في الاب كله
 
   @override
   Sink get inputState => _inputStreamController.sink;

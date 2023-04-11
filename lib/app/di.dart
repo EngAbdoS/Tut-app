@@ -6,6 +6,7 @@ import 'package:flu_proj/data/network/dio_factory.dart';
 import 'package:flu_proj/data/network/network_info.dart';
 import 'package:flu_proj/data/repository/repository_imp.dart';
 import 'package:flu_proj/domain/repository/repository.dart';
+import 'package:flu_proj/domain/usecase/forgot_bassword_use_case.dart';
 import 'package:flu_proj/domain/usecase/loginUseCase.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
 import 'package:get_it/get_it.dart';
@@ -36,12 +37,17 @@ Future<void> initAppModule() async {
       () => RepositoryImp(instance(), instance()));
 }
 
- initLoginModule()  {
-  if(!GetIt.I.isRegistered<LoginUseCase>()) {
+initLoginModule() {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
-
-
-
+  initForgotPasswordModule() {
+    if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+      instance.registerFactory<ForgotPasswordUseCase>(
+          () => ForgotPasswordUseCase(instance()));
+      instance
+          .registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:flu_proj/presentation/forgot_password/forgot_password_vie.dart';
+import 'package:flu_proj/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:flu_proj/presentation/login/view/loginView.dart';
 import 'package:flu_proj/presentation/main/main_view.dart';
 import 'package:flu_proj/presentation/onboarding/view/onboarding_view.dart';
