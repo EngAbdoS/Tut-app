@@ -7,11 +7,11 @@ import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.d
 
 import '../../../domain/usecase/forgot_bassword_use_case.dart';
 
-class ForgotPasswordViewMode extends BaseViewModel
+class ForgotPasswordViewModel extends BaseViewModel
     with ForgotPasswordViewModelInputs, ForgotPasswordViewModelOutputs {
   final ForgotPasswordUseCase _forgotPasswordUseCase;
 
-  ForgotPasswordViewMode(this._forgotPasswordUseCase);
+  ForgotPasswordViewModel(this._forgotPasswordUseCase);
 
   final StreamController _emailStreamController =
       StreamController<String>.broadcast();
@@ -24,7 +24,12 @@ class ForgotPasswordViewMode extends BaseViewModel
   void start() {
     inputState.add(ContentState());
   }
+@override
+  void dispose() {
+    super.dispose();
 
+    _emailStreamController.close();_isAllInputValidStreamController.close();
+  }
   @override
   forgotPassword() async {
     inputState.add(

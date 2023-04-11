@@ -8,6 +8,7 @@ import 'package:flu_proj/data/repository/repository_imp.dart';
 import 'package:flu_proj/domain/repository/repository.dart';
 import 'package:flu_proj/domain/usecase/forgot_bassword_use_case.dart';
 import 'package:flu_proj/domain/usecase/loginUseCase.dart';
+import 'package:flu_proj/presentation/forgot_password/viewModel/forgotPasswordViewModel.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -42,12 +43,13 @@ initLoginModule() {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
-  initForgotPasswordModule() {
-    if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
-      instance.registerFactory<ForgotPasswordUseCase>(
-          () => ForgotPasswordUseCase(instance()));
-      instance
-          .registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
-    }
+}
+
+initForgotPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(
+        () => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(
+        () => ForgotPasswordViewModel(instance()));
   }
 }
