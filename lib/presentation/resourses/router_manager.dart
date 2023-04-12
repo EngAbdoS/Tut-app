@@ -8,7 +8,7 @@ import 'package:flu_proj/presentation/store_details/store_details_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/di.dart';
-import '../register/register_view.dart';
+import '../register/registerView/register_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
