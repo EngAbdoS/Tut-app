@@ -1,3 +1,5 @@
+import 'package:flu_proj/app/di.dart';
+import 'package:flu_proj/presentation/register/registerViewModel/registerViewModel.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatefulWidget {
@@ -8,6 +10,7 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final RegisterViewModel _viewModel =instance<RegisterViewModel>();
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
@@ -16,7 +19,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _viewModel.dispose();
     super.dispose();
   }
 }
