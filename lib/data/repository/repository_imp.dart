@@ -5,6 +5,7 @@ import 'package:flu_proj/data/network/failure.dart';
 import 'package:flu_proj/data/network/requests.dart';
 import 'package:flu_proj/domain/models/models.dart';
 import 'package:flu_proj/domain/repository/repository.dart';
+import 'package:flutter/foundation.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/network_info.dart';
 
@@ -27,7 +28,6 @@ class RepositoryImp implements Repository {
               ApiInternalStatus.FAILURE));
         }
       } catch (error) {
-
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -36,9 +36,7 @@ class RepositoryImp implements Repository {
   }
 
   @override
-  Future<Either<Failure, String>> forgotPassword(String email) async{
-
-
+  Future<Either<Failure, String>> forgotPassword(String email) async {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _remoteDataSource.forgotPassword(email);
@@ -49,13 +47,13 @@ class RepositoryImp implements Repository {
               ApiInternalStatus.FAILURE));
         }
       } catch (error) {
-
+        if (kDebugMode) {
+          print(error);
+        }
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {
       return left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
-    
-    
   }
 }

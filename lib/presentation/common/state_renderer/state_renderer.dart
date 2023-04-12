@@ -13,6 +13,7 @@ enum StateRendererType {
 
   popupLoadingState,
   popupErrorState,
+  popupSuccessState,
   //full screen
 
   fullScreenLoadingState,
@@ -45,7 +46,8 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        return _getPopUpDialog(context, [_getAnimatedImage(JsonAssets.loading)]);
+        return _getPopUpDialog(
+            context, [_getAnimatedImage(JsonAssets.loading)]);
       case StateRendererType.popupErrorState:
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
@@ -72,7 +74,13 @@ class StateRenderer extends StatelessWidget {
         ]);
       case StateRendererType.contentState:
         return Container();
+      case StateRendererType.popupSuccessState:
+        return _getPopUpDialog(context, [               _getAnimatedImage(JsonAssets.success),
+          _getMessage(title),
 
+          _getMessage(message),
+          _getRetryButton(AppStrings.ok, context),
+        ]);
       default:
         return Container();
     }
@@ -120,9 +128,9 @@ class StateRenderer extends StatelessWidget {
 
   Widget _getAnimatedImage(String animationName) {
     return SizedBox(
-      height: AppSize.s100, width: AppSize.s100,
-      child:Lottie.asset(animationName)
-    );
+        height: AppSize.s100,
+        width: AppSize.s100,
+        child: Lottie.asset(animationName));
   }
 
   Widget _getMessage(String message) {
@@ -133,6 +141,7 @@ class StateRenderer extends StatelessWidget {
           message,
           style: getRegularStyle(
               color: ColorManager.black, fontSize: FontSize.s18),
+          textAlign: TextAlign.center,
         ),
       ),
     );

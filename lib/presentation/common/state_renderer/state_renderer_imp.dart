@@ -1,7 +1,6 @@
 import 'package:flu_proj/app/constants.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 abstract class FlowState {
@@ -45,6 +44,17 @@ class ContentState extends FlowState {
 
   @override
   StateRendererType getStateRendererType() => StateRendererType.contentState;
+}
+
+class SuccessState extends FlowState{
+  String message;
+SuccessState(this.message);
+  @override
+  String getMessage() =>message;
+
+  @override
+  StateRendererType getStateRendererType() =>StateRendererType.popupSuccessState;
+
 }
 
 class EmptyState extends FlowState {
@@ -100,6 +110,14 @@ extension FlowStateExtention on FlowState {
 
           return contentScreenWidget;
         }
+
+      case SuccessState:
+        {
+          dismissDialog(context);
+          showPopUp(context, StateRendererType.popupSuccessState, getMessage(),title:AppStrings.success);
+          return contentScreenWidget;
+        }
+
       case EmptyState:
         {
           return StateRenderer(
@@ -117,13 +135,14 @@ extension FlowStateExtention on FlowState {
   }
 
   showPopUp(BuildContext context, StateRendererType stateRendererType,
-      String message) {
+      String message,{String title =Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
           stateRendererType: stateRendererType,
           message: message,
+          title: title,
           retryActionFunction: () {},
         ),
       ),
