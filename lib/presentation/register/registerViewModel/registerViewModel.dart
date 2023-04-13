@@ -23,6 +23,8 @@ class RegisterViewModel extends BaseViewModel
   StreamController areAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
+  StreamController isUserRegisteredSuccessfullyStreamController =
+      StreamController<bool>();
   final RegisterUseCase _registerUseCase;
 
   RegisterViewModel(this._registerUseCase);
@@ -40,19 +42,20 @@ class RegisterViewModel extends BaseViewModel
         LoadingState(stateRendererType: StateRendererType.popupLoadingState));
 
     (await _registerUseCase.execute(RegisterUseCaseInput(
-            registerObject.userName,
-            registerObject.mobileNumber,
-            registerObject.countryMobileCode,
-            registerObject.password,
-            registerObject.profilePicture,
-            registerObject.email)))
+      registerObject.userName,
+      registerObject.countryMobileCode,
+      registerObject.mobileNumber,
+      registerObject.email,
+      registerObject.password,
+      registerObject.profilePicture,
+    )))
         .fold(
             (failure) => {
                   inputState.add(ErrorState(
                       StateRendererType.popupErrorState, failure.message))
                 }, (data) {
       inputState.add(ContentState());
-      //  isUserLoggedInSuccessfullyStreamController.add(true);
+      isUserRegisteredSuccessfullyStreamController.add(true);
     });
   }
 
@@ -64,6 +67,7 @@ class RegisterViewModel extends BaseViewModel
     passwordStreamController.close();
     profilePictureStreamController.close();
     areAllInputsValidStreamController.close();
+    isUserRegisteredSuccessfullyStreamController.close();
     super.dispose();
   }
 
@@ -89,6 +93,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setUserName(String userName) {
+    inputUserName.add(userName);
     _isUserNameValid(userName)
         ? registerObject = registerObject.copyWith(userName: userName)
         : registerObject = registerObject.copyWith(userName: "");
@@ -106,6 +111,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setEmail(String email) {
+    inputEmail.add(email);
     isEmailValid(email)
         ? registerObject = registerObject.copyWith(email: email)
         : registerObject = registerObject.copyWith(email: "");
@@ -114,6 +120,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setMobileNumber(String mobileNumber) {
+    inputMobileNumber.add(mobileNumber);
     _isMobileNumberValid(mobileNumber)
         ? registerObject = registerObject.copyWith(mobileNumber: mobileNumber)
         : registerObject = registerObject.copyWith(mobileNumber: "");
@@ -122,6 +129,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     _isPasswordValid(password)
         ? registerObject = registerObject.copyWith(password: password)
         : registerObject = registerObject.copyWith(password: "");
@@ -130,6 +138,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setProfilePicture(File profilePicture) {
+    inputProfilePicture.add(profilePicture);
     profilePicture.path.isNotEmpty
         ? registerObject =
             registerObject.copyWith(profilePicture: profilePicture.path)
@@ -186,7 +195,7 @@ class RegisterViewModel extends BaseViewModel
   ////*****private fun*******
 
   bool _isUserNameValid(String userName) {
-    return userName.length >= 8;
+    return userName.length >= 6;
   }
 
   bool _isMobileNumberValid(String mobileNumber) {
@@ -194,7 +203,7 @@ class RegisterViewModel extends BaseViewModel
   }
 
   bool _isPasswordValid(String password) {
-    return password.length <= 6;
+    return password.length >= 6;
   }
 
   bool _areAllInputsValid() {
@@ -203,7 +212,7 @@ class RegisterViewModel extends BaseViewModel
         registerObject.email.isNotEmpty &&
         registerObject.mobileNumber.isNotEmpty &&
         registerObject.countryMobileCode.isNotEmpty &&
-        registerObject.countryMobileCode.isNotEmpty;
+        registerObject.profilePicture.isNotEmpty;
   }
 
   validate() {

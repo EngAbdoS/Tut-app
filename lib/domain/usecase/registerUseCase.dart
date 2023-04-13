@@ -15,23 +15,24 @@ class RegisterUseCase
   Future<Either<Failure, Authentication>> execute(
       RegisterUseCaseInput input) async {
     return await _repository.register(RegisterRequest(
+        input.userName,
+        input.countryMobileCode,
+        input.mobileNumber,
         input.email,
         input.password,
-        input.profilePicture,
-        input.mobileNumber,
-        input.userName,
-        input.countryMobileCode));
+        input.profilePicture));
   }
 }
 
 class RegisterUseCaseInput {
-  String email;
-  String password;
   String userName;
   String countryMobileCode;
   String mobileNumber;
+
+  String email;
+  String password;
   String profilePicture;
 
-  RegisterUseCaseInput(this.userName, this.email, this.password,
-      this.countryMobileCode, this.mobileNumber, this.profilePicture);
+  RegisterUseCaseInput(this.userName, this.countryMobileCode, this.mobileNumber,
+      this.email, this.password, this.profilePicture);
 }

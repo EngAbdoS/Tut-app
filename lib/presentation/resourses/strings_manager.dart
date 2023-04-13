@@ -21,6 +21,7 @@ class AppStrings {
   static const login = "Login";
   static const forgetPassword = "Forget password";
   static const register = "Not a member ? Sign up";
+  static const registerButton = "Register";
   static const usernameError = "Please enter your username";
   static const passwordError = "Please enter your password";
 
@@ -34,8 +35,16 @@ class AppStrings {
 
   static const String success = "Success";
   static const String userNameValidation =
-      "User name should be at least 8 characters.";
+      "User name should be at least 6 characters.";
   static const String emailValidation = "Email format is wrong. ";
   static const String mobileNumberValidation = "Mobile number should be  11 digit .  ";
   static const String passwordValidationValidation = "Password should be at least 6 characters.  ";
+  static const String alreadyHaveAcCount = "Already have account ? Login";
+  static const String mobileNumber = "Mobile Number";
+  static const String profilePicture = "Profile Picture";
+  static const String photoGallery = "Photo from Gallery";
+  static const String photoCamera = "Photo from Camera";
+
+
+
 }

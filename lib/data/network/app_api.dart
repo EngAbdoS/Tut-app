@@ -17,7 +17,7 @@ abstract class AppServiceClient {
   @POST("/customers/forgotPassword")
   Future<ForgotPasswordResponse> forgotPassword(@Field("email") String email);
 
-  @POST("/customers/register")
+  @POST("/customer/register")
   Future<AuthenticationResponse> register(
       @Field("user_name") String userName,
       @Field("country_mobile_code") String countryMobileCode,

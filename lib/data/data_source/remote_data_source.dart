@@ -35,6 +35,9 @@ class RemoteDataSourceIml implements RemoteDataSource {
         registerRequest.mobileNumber,
         registerRequest.email,
         registerRequest.password,
-        registerRequest.profilePicture);
+    ""//using mock API
+    //    registerRequest.profilePicture
+
+    );
   }
 }

@@ -100,7 +100,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/customers/register',
+              '/customer/register',
               queryParameters: queryParameters,
               data: _data,
             )
