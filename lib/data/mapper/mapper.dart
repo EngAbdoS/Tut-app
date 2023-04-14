@@ -23,20 +23,53 @@ extension ContactResponseMapper on ContactResponse? {
 
 extension AuthrnticationResponseMapper on AuthenticationResponse? {
   Authentication toDomain() {
-    return Authentication(
-        this?.contacts.toDomain(), this?.customer.toDomain()); //what does onEmpty do 🤦
+    return Authentication(this?.contacts.toDomain(),
+        this?.customer.toDomain()); //what does onEmpty do 🤦
   }
-
 }
 
-
-extension ForgotPasswordResponseMapper on ForgotPasswordResponse?{
-
-String toDomain(){
-  return this?.support?.orEmpty()??Constants.empty;
-
-
+extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
+  String toDomain() {
+    return this?.support?.orEmpty() ?? Constants.empty;
+  }
 }
 
+extension ServiceResponseMapper on ServicesResponse? {
+  Service toDomain() {
+    return Service(this?.id.orEmpty() ?? "", this?.title.orEmpty() ?? "",
+        this?.image.orEmpty() ?? "");
+  }
 }
 
+extension BannerResponseMapper on BannerResponse? {
+  Banners toDomain() {
+    return Banners(this?.id.orEmpty() ?? "", this?.link.orEmpty() ?? "",
+        this?.title.orEmpty() ?? "", this?.image.orEmpty() ?? "");
+  }
+}
+
+extension StoreResponseMapper on StoresResponse? {
+  Stores toDomain() {
+    return Stores(this?.id.orEmpty() ?? "", this?.title.orEmpty() ?? "",
+        this?.image.orEmpty() ?? "");
+  }
+}
+
+extension HomeResponseMapper on HomeResponse? {
+  HomeObject toDomain() {
+    List<Service> services = (this?.data?.services?.map((e) => e.toDomain()) ??
+            const Iterable.empty())
+        .cast<Service>()
+        .toList();
+    List<Banners> banners = (this?.data?.banners?.map((e) => e.toDomain()) ??
+            const Iterable.empty())
+        .cast<Banners>()
+        .toList();
+    List<Stores> stores =
+        (this?.data?.stores?.map((e) => e.toDomain()) ?? const Iterable.empty())
+            .cast<Stores>()
+            .toList();
+    var data = HomeData(services, banners, stores);
+    return HomeObject(data);
+  }
+}
