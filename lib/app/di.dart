@@ -7,10 +7,12 @@ import 'package:flu_proj/data/network/network_info.dart';
 import 'package:flu_proj/data/repository/repository_imp.dart';
 import 'package:flu_proj/domain/repository/repository.dart';
 import 'package:flu_proj/domain/usecase/forgot_bassword_use_case.dart';
+import 'package:flu_proj/domain/usecase/home_useCace.dart';
 import 'package:flu_proj/domain/usecase/loginUseCase.dart';
 import 'package:flu_proj/domain/usecase/registerUseCase.dart';
 import 'package:flu_proj/presentation/forgot_password/viewModel/forgotPasswordViewModel.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
+import 'package:flu_proj/presentation/main/pages/home/viewModel/home_view_model.dart';
 import 'package:flu_proj/presentation/register/registerViewModel/registerViewModel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -64,5 +66,15 @@ initRegisterModule() {
             () => RegisterViewModel(instance()));
     instance.registerFactory<ImagePicker>(
             () => ImagePicker());
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(
+            () => HomeUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(
+            () => HomeViewModel(instance()));
+
   }
 }
