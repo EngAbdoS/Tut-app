@@ -12,7 +12,7 @@ dependencies:
   flutter_svg: ^2.0.2
   retrofit: ^4.0.1
   analyzer: ^5.7.1
-  dio: ^5.0.2
+  dio: ^5.1.1
   json_serializable: ^6.6.1
   retrofit_generator: ^6.0.0+1
   json_annotation: ^4.8.0

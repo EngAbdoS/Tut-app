@@ -42,7 +42,8 @@ class _MainViewState extends State<MainView> {
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(boxShadow: [
-          BoxShadow(color: ColorManager.lightGray, spreadRadius: AppSize.s1_5*.5)
+          BoxShadow(
+              color: ColorManager.lightGray, spreadRadius: AppSize.s1_5 * .5)
         ]),
         child: BottomNavigationBar(
           selectedItemColor: ColorManager.primary,
@@ -68,7 +69,7 @@ class _MainViewState extends State<MainView> {
   onTap(int index) {
     setState(() {
       _currentIndex = index;
-      _title=titles[index];
+      _title = titles[index];
     });
   }
 }
