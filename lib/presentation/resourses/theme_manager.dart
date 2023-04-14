@@ -47,15 +47,20 @@ ThemeData getAppTheme() {
     textTheme: TextTheme(
       headlineLarge: getSemiBoldStyle(
           color: ColorManager.darkPrimary, fontSize: FontSize.s16),
-      headlineMedium: getRegularStyle(color: ColorManager.darkGray, fontSize: FontSize.s14),
+      headlineMedium:
+          getRegularStyle(color: ColorManager.darkGray, fontSize: FontSize.s14),
       titleLarge:
           getMeduimStyle(color: ColorManager.lightGray, fontSize: AppSize.s14),
-      titleMedium: getMeduimStyle(color: ColorManager.primary,fontSize: FontSize.s16),
-      titleSmall: getRegularStyle(color: ColorManager.white,fontSize: FontSize.s16),
+      titleMedium:
+          getMeduimStyle(color: ColorManager.primary, fontSize: FontSize.s16),
+      titleSmall:
+          getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),
+      labelSmall:
+          getBoldStyle(color: ColorManager.primary, fontSize: FontSize.s12),
       bodyLarge: getRegularStyle(color: ColorManager.gray1),
       bodySmall: getRegularStyle(color: ColorManager.gray),
-      displayLarge:
-          getSemiBoldStyle(color: ColorManager.darkGray, fontSize: FontSize.s16),
+      displayLarge: getSemiBoldStyle(
+          color: ColorManager.darkGray, fontSize: FontSize.s16),
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(AppPadding.p8),
@@ -65,14 +70,14 @@ ThemeData getAppTheme() {
           getMeduimStyle(color: ColorManager.gray, fontSize: FontSize.s14),
       errorStyle: getRegularStyle(color: ColorManager.error),
       enabledBorder: OutlineInputBorder(
-        borderSide:
-            BorderSide(color: ColorManager.gray, width: AppSize.s1_5),
+        borderSide: BorderSide(color: ColorManager.gray, width: AppSize.s1_5),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
+        borderSide:
+            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
         borderRadius: const BorderRadius.all(
           Radius.circular(AppSize.s8),
         ),

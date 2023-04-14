@@ -26,6 +26,7 @@ dependencies:
   country_code_picker: ^3.0.0
   image_picker: ^0.8.7+2
   rxdart: ^0.27.7
+  carousel_slider: ^4.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

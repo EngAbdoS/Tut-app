@@ -25,6 +25,8 @@ class HomeViewModel extends BaseViewModel
     _getHomeData();
   }
 
+
+
   @override
   void dispose() {
     _bannersStreamController.close();
