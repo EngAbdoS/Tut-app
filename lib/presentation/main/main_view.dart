@@ -1,7 +1,7 @@
-import 'package:flu_proj/presentation/main/pages/home_page.dart';
-import 'package:flu_proj/presentation/main/pages/notifications_page.dart';
-import 'package:flu_proj/presentation/main/pages/search_page.dart';
-import 'package:flu_proj/presentation/main/pages/settings_page.dart';
+import 'package:flu_proj/presentation/main/pages/home/view/home_page.dart';
+import 'package:flu_proj/presentation/main/pages/notifications/view/notifications_page.dart';
+import 'package:flu_proj/presentation/main/pages/search/view/search_page.dart';
+import 'package:flu_proj/presentation/main/pages/settings/view/settings_page.dart';
 import 'package:flu_proj/presentation/resourses/color_manager.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
 import 'package:flu_proj/presentation/resourses/values_manager.dart';

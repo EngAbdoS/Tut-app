@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../resourses/strings_manager.dart';
+import '../../../../resourses/strings_manager.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
