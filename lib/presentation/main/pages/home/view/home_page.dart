@@ -4,6 +4,7 @@ import 'package:flu_proj/domain/models/models.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
 import 'package:flu_proj/presentation/main/pages/home/viewModel/home_view_model.dart';
 import 'package:flu_proj/presentation/resourses/color_manager.dart';
+import 'package:flu_proj/presentation/resourses/router_manager.dart';
 import 'package:flu_proj/presentation/resourses/values_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
             )
             .toList(),
         options: CarouselOptions(
-          height: AppSize.s60 * 1.5,
+          height: AppSize.s100*1.9,
           autoPlay: true,
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
@@ -120,14 +121,113 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-
-
   Widget _getServices() {
-    return Center();
+    return StreamBuilder<List<Service>>(
+      stream: _viewModel.outputServices,
+      builder: (context, snapshot) {
+        return _getServicesWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getServicesWidget(List<Service>? services) {
+    if (services != null) {
+      return Padding(
+        padding:
+            const EdgeInsets.only(left: AppPadding.p12, right: AppPadding.p12),
+        child: Container(
+          height: AppSize.s80*2,
+          margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            children: services
+                .map(
+                  (service) => Card(
+                    elevation: AppSize.s4,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: ColorManager.white, width: AppSize.s1_5),
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppSize.s12),
+                          child: Image.network(
+                            service.image,
+                            fit: BoxFit.cover,
+                            width: AppSize.s100*1.2,
+                            height: AppSize.s100*1.2,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: AppPadding.p8),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              service.title,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget _getStores() {
-    return Center();
+    return StreamBuilder<List<Stores>>(
+      stream: _viewModel.outputStores,
+      builder: (context, snapshot) {
+        return _getStoresWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getStoresWidget(List<Stores>? stores) {
+    if (stores != null) {
+      return Padding(
+        padding: const EdgeInsets.only(
+            left: AppPadding.p12, right: AppPadding.p12, top: AppPadding.p12),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            GridView.count(
+                crossAxisCount: AppSize.s2.toInt(),
+                crossAxisSpacing: AppSize.s8,
+                mainAxisSpacing: AppSize.s8,
+                physics: const ScrollPhysics(),
+                shrinkWrap: true,
+                children: List.generate(stores.length, (index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.storeDetailsRoute);
+                    },
+                    child: Card(
+                      elevation: AppSize.s4,
+                      child: Image.network(
+                        stores[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                }))
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   @override

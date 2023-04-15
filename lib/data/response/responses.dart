@@ -73,7 +73,7 @@ class ForgotPasswordResponse extends BaseResponse {
 @JsonSerializable()
 class ServicesResponse {
   @JsonKey(name: "id")
-  String? id;
+  int? id;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "image")
@@ -89,7 +89,7 @@ class ServicesResponse {
 @JsonSerializable()
 class BannerResponse {
   @JsonKey(name: "id")
-  String? id;
+  int? id;
   @JsonKey(name: "link")
   String? link;
   @JsonKey(name: "title")
@@ -107,7 +107,7 @@ class BannerResponse {
 @JsonSerializable()
 class StoresResponse {
   @JsonKey(name: "id")
-  String? id;
+  int? id;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "image")

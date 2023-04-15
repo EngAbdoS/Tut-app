@@ -36,22 +36,22 @@ extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
 
 extension ServiceResponseMapper on ServicesResponse? {
   Service toDomain() {
-    return Service(this?.id.orEmpty() ?? "", this?.title.orEmpty() ?? "",
-        this?.image.orEmpty() ?? "");
+    return Service(this?.id.orZero() ??Constants.zero, this?.title.orEmpty() ?? Constants.empty,
+        this?.image.orEmpty() ??  Constants.empty);
   }
 }
 
 extension BannerResponseMapper on BannerResponse? {
   Banners toDomain() {
-    return Banners(this?.id.orEmpty() ?? "", this?.link.orEmpty() ?? "",
-        this?.title.orEmpty() ?? "", this?.image.orEmpty() ?? "");
+    return Banners(this?.id.orZero() ?? Constants.zero, this?.link.orEmpty() ??  Constants.empty,
+        this?.title.orEmpty() ??  Constants.empty, this?.image.orEmpty() ??  Constants.empty);
   }
 }
 
 extension StoreResponseMapper on StoresResponse? {
   Stores toDomain() {
-    return Stores(this?.id.orEmpty() ?? "", this?.title.orEmpty() ?? "",
-        this?.image.orEmpty() ?? "");
+    return Stores(this?.id.orZero() ?? Constants.zero, this?.title.orEmpty() ??  Constants.empty,
+        this?.image.orEmpty() ??  Constants.empty);
   }
 }
 
