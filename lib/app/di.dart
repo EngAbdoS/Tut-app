@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flu_proj/app/app_prefs.dart';
+import 'package:flu_proj/data/data_source/local_data_source.dart';
 import 'package:flu_proj/data/data_source/remote_data_source.dart';
 import 'package:flu_proj/data/network/app_api.dart';
 import 'package:flu_proj/data/network/dio_factory.dart';
@@ -38,9 +39,10 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceIml(instance()));
+  instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImp(instance(), instance()));
+      () => RepositoryImp(instance(), instance(), instance()));
 }
 
 initLoginModule() {
@@ -58,23 +60,20 @@ initForgotPasswordModule() {
         () => ForgotPasswordViewModel(instance()));
   }
 }
+
 initRegisterModule() {
   if (!GetIt.I.isRegistered<RegisterUseCase>()) {
-    instance.registerFactory<RegisterUseCase>(
-            () => RegisterUseCase(instance()));
+    instance
+        .registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
     instance.registerFactory<RegisterViewModel>(
-            () => RegisterViewModel(instance()));
-    instance.registerFactory<ImagePicker>(
-            () => ImagePicker());
+        () => RegisterViewModel(instance()));
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }
 
 initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
-    instance.registerFactory<HomeUseCase>(
-            () => HomeUseCase(instance()));
-    instance.registerFactory<HomeViewModel>(
-            () => HomeViewModel(instance()));
-
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
 }
