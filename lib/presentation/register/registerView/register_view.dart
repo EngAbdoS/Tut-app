@@ -249,7 +249,7 @@ class _RegisterViewState extends State<RegisterView> {
                         onPressed: (snapshot.data ?? false)
                             ? () => _viewModel.register()
                             : null,
-                        child: const Text(AppStrings.registerButton),
+                        child: const Text(AppStrings.register),
                       ),
                     );
                   },
@@ -266,7 +266,7 @@ class _RegisterViewState extends State<RegisterView> {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    AppStrings.alreadyHaveAcCount,
+                    AppStrings.alreadyHaveAccount,
                     style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.end,
                   ),

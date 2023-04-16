@@ -4,7 +4,7 @@ description: A new Flutter project.
 publish_to: none
 version: 1.0.0+1
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=2.19.6 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
@@ -27,6 +27,8 @@ dependencies:
   image_picker: ^0.8.7+2
   rxdart: ^0.27.7
   carousel_slider: ^4.2.1
+  easy_localization: ^3.0.1
+  flutter_phoenix: ^1.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -63,14 +63,14 @@ _postDataToView();
   }
 
   List<SliderObject> _getSliderData() => [
-        SliderObject(AppStrings.onBourdingTitel1,
-            AppStrings.onBourdingSubTitel1, ImageAssets.onBoardingLogo1),
-        SliderObject(AppStrings.onBourdingTitel2,
-            AppStrings.onBourdingSubTitel2, ImageAssets.onBoardingLogo2),
-        SliderObject(AppStrings.onBourdingTitel3,
-            AppStrings.onBourdingSubTitel3, ImageAssets.onBoardingLogo3),
-        SliderObject(AppStrings.onBourdingTitel4,
-            AppStrings.onBourdingSubTitel4, ImageAssets.onBoardingLogo4),
+        SliderObject(AppStrings.onBoardingTitle1,
+            AppStrings.onBoardingSubTitle1, ImageAssets.onBoardingLogo1),
+        SliderObject(AppStrings.onBoardingTitle2,
+            AppStrings.onBoardingSubTitle2, ImageAssets.onBoardingLogo2),
+        SliderObject(AppStrings.onBoardingTitle3,
+            AppStrings.onBoardingSubTitle3, ImageAssets.onBoardingLogo3),
+        SliderObject(AppStrings.onBoardingTitle4,
+            AppStrings.onBoardingSubTitle4, ImageAssets.onBoardingLogo4),
       ];
 }
 

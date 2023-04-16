@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flu_proj/data/network/failure.dart';
+import 'package:flu_proj/presentation/resourses/strings_manager.dart';
 
 class ErrorHandler implements Exception {
   late Failure failure;
@@ -149,23 +150,23 @@ class ResponceCode {
 }
 
 class ResponceMessage {
-  static const String SUCCESS = "success";
-  static const String NO_CONTANT = "success";
-  static const String BAD_REQUEST = "bad request ,try again later";
-  static const String UNAUTHORISED = "unauthorised user , ..... ";
-  static const String FORBIDDEN = "forbidden request,try again later";
-  static const String NOT_FOUND = "content not found , try again later ";
-  static const String INTERNAL_SERVER_ERROR =
-      "Oops some thing went wrong , try again later";
+  static const String SUCCESS = AppStrings.success;
+  static const String NO_CONTANT = AppStrings.noContent;
+  static const String BAD_REQUEST = AppStrings.badRequestError;
+  static const String UNAUTHORISED =AppStrings.unauthorizedError;
+  static const String FORBIDDEN = AppStrings.forbiddenError;
+  static const String NOT_FOUND = AppStrings.notFoundError;
+  static const String INTERNAL_SERVER_ERROR =AppStrings.internalServerError;
+//      "Oops some thing went wrong , try again later";
 
   //local status code
-  static const String CONNECT_TIMEOUT = "time out error ,try again later";
-  static const String CANCEL = "request was cancelled ,try again later";
-  static const String RECIVED_TIMEOUT = "time out error ,try again later";
-  static const String SEND_TIMEOUT = "time out error ,try again later";
-  static const String CACHE_ERROR = "cache error ,try again later";
-  static const String NO_INTERNET_CONNECTION = "plz chek your connection ";
-  static const String DEFAULT = "Oops some thing went wrong , try again later";
+  static const String CONNECT_TIMEOUT =AppStrings.timeoutError;
+  static const String CANCEL = AppStrings.conflictError;
+  static const String RECIVED_TIMEOUT = AppStrings.timeoutError;
+  static const String SEND_TIMEOUT = AppStrings.timeoutError;
+  static const String CACHE_ERROR =AppStrings.cacheError;
+  static const String NO_INTERNET_CONNECTION = AppStrings.noInternetError;
+  static const String DEFAULT =AppStrings.defaultError;
 }
 
 class ApiInternalStatus

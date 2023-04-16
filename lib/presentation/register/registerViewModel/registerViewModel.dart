@@ -155,7 +155,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorUserName =>
       outputIsUserNameValid.map((isUserNameValid) =>
-          isUserNameValid ? null : AppStrings.userNameValidation);
+          isUserNameValid ? null : AppStrings.userNameInvalid);
 
   @override
   Stream<bool> get outputIsEmailValid =>
@@ -163,7 +163,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get outputErrorEmail => outputIsEmailValid
-      .map((isEmailValid) => isEmailValid ? null : AppStrings.emailValidation);
+      .map((isEmailValid) => isEmailValid ? null : AppStrings.invalidEmail);
 
   @override
   Stream<bool> get outputIsMobileNumberValid =>
@@ -173,7 +173,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorMobileNumber =>
       outputIsMobileNumberValid.map((isMobileNumberValid) =>
-          isMobileNumberValid ? null : AppStrings.mobileNumberValidation);
+          isMobileNumberValid ? null : AppStrings.mobileNumberInvalid);
 
   @override
   Stream<bool> get outputIsPasswordValid => passwordStreamController.stream
@@ -182,7 +182,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<String?> get outputErrorPassword =>
       outputIsPasswordValid.map((isPasswordValid) =>
-          isPasswordValid ? null : AppStrings.passwordValidationValidation);
+          isPasswordValid ? null : AppStrings.passwordInvalid);
 
   @override
   Stream<File> get outputIsProfilePictureValid =>

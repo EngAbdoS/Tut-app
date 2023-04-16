@@ -13,7 +13,7 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text(AppStrings.notification),
+      child: Text(AppStrings.notifications),
     );
   }
 }

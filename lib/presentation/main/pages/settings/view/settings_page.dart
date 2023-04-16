@@ -36,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         ListTile(
           title: Text(
-            AppStrings.contactUS,
+            AppStrings.contactUs,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           leading: const Icon(Icons.contacts),
@@ -47,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         ListTile(
           title: Text(
-            AppStrings.inviteFriends,
+            AppStrings.inviteYourFriends,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           leading: const Icon(Icons.share),
