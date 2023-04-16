@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
 import 'package:flu_proj/presentation/forgot_password/viewModel/forgotPasswordViewModel.dart';
 import 'package:flutter/material.dart';
@@ -78,11 +79,11 @@ Widget _getContentWidget()
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailTextEditingController,
                     decoration: InputDecoration(
-                        hintText: AppStrings.emailHint,
-                        labelText: AppStrings.emailHint,
+                        hintText: AppStrings.emailHint.tr(),
+                        labelText: AppStrings.emailHint.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppStrings.invalidEmail),
+                            : AppStrings.invalidEmail.tr()),
                   );
                 },
               ),
@@ -103,7 +104,7 @@ Widget _getContentWidget()
                         onPressed: (snapshot.data ?? false)
                             ? () => _viewModel.forgotPassword()
                             : null,
-                        child: const Text(AppStrings.resetPassword)),
+                        child: const Text(AppStrings.resetPassword).tr()),
                   );
                 },
               ),

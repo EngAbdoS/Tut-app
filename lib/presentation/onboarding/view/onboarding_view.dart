@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/app/app_prefs.dart';
 import 'package:flu_proj/presentation/onboarding/viewModel/onBoarding_viewmodel.dart';
 import 'package:flu_proj/presentation/resourses/assets_manager.dart';
@@ -85,7 +86,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     AppStrings.skip,
                     style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.end,
-                  ),
+                  ).tr(),
                 ),
               ),
               _getBottomSheetWidget(sliderViewObject),
@@ -182,7 +183,7 @@ class OnBoardingPage extends StatelessWidget {
           child: Text(
             _sliderObject.title,
             style: Theme.of(context).textTheme.displayLarge,
-          ),
+          ).tr(),
         ),
         Padding(
           padding: const EdgeInsets.all(AppPadding.p8),
@@ -190,7 +191,7 @@ class OnBoardingPage extends StatelessWidget {
             _sliderObject.subTitle,
             style: Theme.of(context).textTheme.headlineMedium,
             textAlign: TextAlign.center,
-          ),
+          ).tr(),
         ),
         const SizedBox(
           height: AppSize.s60,

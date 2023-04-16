@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/presentation/main/pages/home/view/home_page.dart';
 import 'package:flu_proj/presentation/main/pages/notifications/view/notifications_page.dart';
 import 'package:flu_proj/presentation/main/pages/search/view/search_page.dart';
@@ -37,7 +38,7 @@ class _MainViewState extends State<MainView> {
         title: Text(
           _title,
           style: Theme.of(context).textTheme.titleSmall,
-        ),
+        ).tr(),
       ),
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
@@ -50,16 +51,16 @@ class _MainViewState extends State<MainView> {
           unselectedItemColor: ColorManager.gray,
           currentIndex: _currentIndex,
           onTap: onTap,
-          items: const [
+          items:  [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: AppStrings.home),
+                icon: const Icon(Icons.home_outlined), label: AppStrings.home.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: AppStrings.search),
+                icon: const Icon(Icons.search), label: AppStrings.search.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_none_outlined),
-                label: AppStrings.notifications),
+                icon: const Icon(Icons.notifications_none_outlined),
+                label: AppStrings.notifications.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: AppStrings.settings),
+                icon: const Icon(Icons.settings), label: AppStrings.settings.tr()),
           ],
         ),
       ),

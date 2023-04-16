@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/app/constants.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
@@ -141,8 +142,8 @@ extension FlowStateExtention on FlowState {
         context: context,
         builder: (BuildContext context) => StateRenderer(
           stateRendererType: stateRendererType,
-          message: message,
-          title: title,
+          message: message.tr(),
+          title: title.tr(),
           retryActionFunction: () {},
         ),
       ),

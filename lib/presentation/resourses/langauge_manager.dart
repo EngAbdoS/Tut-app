@@ -1,16 +1,23 @@
-enum LangaugeType { ENGLISH, ARAIC }
+import 'package:flutter/material.dart';
+
+enum LanguageType { ENGLISH, ARAIC }
 
 const String ARABIC="ar";
 const String ENGLISH="en";
+const String ASSET_PATH_LOCALISATION="assets/translations";
 
-extension LangaugeTypeExtention on LangaugeType{
+const Locale ARABIC_LOCAL=Locale("ar","EG");
+const Locale ENGLISH_LOCAL=Locale("en","US");
+
+
+extension LangaugeTypeExtention on LanguageType{
   String getValue()
   {
     switch(this){
 
-      case LangaugeType.ENGLISH:
+      case LanguageType.ENGLISH:
        return ENGLISH;
-      case LangaugeType.ARAIC:
+      case LanguageType.ARAIC:
       return ARABIC;
     }
 

@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/app/di.dart';
 import 'package:flu_proj/domain/models/models.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
       child: Text(
         title,
         style: Theme.of(context).textTheme.labelSmall,
-      ),
+      ).tr(),
     );
   }
 
@@ -155,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                               service.title,
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyMedium,
-                            ),
+                            ).tr(),
                           ),
                         )
                       ],

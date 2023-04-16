@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/presentation/resourses/assets_manager.dart';
 import 'package:flu_proj/presentation/resourses/color_manager.dart';
 import 'package:flu_proj/presentation/resourses/font_manager.dart';
@@ -142,7 +143,7 @@ class StateRenderer extends StatelessWidget {
           style: getRegularStyle(
               color: ColorManager.black, fontSize: FontSize.s18),
           textAlign: TextAlign.center,
-        ),
+        ).tr(),
       ),
     );
   }
@@ -162,7 +163,7 @@ class StateRenderer extends StatelessWidget {
                   Navigator.of(context).pop();
                 }
               },
-              child: Text(buttonTitle),
+              child: Text(buttonTitle).tr(),
             )),
       ),
     );

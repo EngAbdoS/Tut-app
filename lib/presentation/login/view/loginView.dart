@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flu_proj/app/di.dart';
 import 'package:flu_proj/presentation/common/state_renderer/state_renderer_imp.dart';
 import 'package:flu_proj/presentation/login/viewModel/login_viewModel.dart';
@@ -35,7 +36,6 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isLoggedIn) {
       if (isLoggedIn) {
-
         //TODO study ...
         SchedulerBinding.instance.addPostFrameCallback((_) {
           _appPreferences.setLoggedIn();
@@ -95,11 +95,11 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.emailAddress,
                       controller: _userNameController,
                       decoration: InputDecoration(
-                        hintText: AppStrings.username,
-                        labelText: AppStrings.username,
+                        hintText: AppStrings.username.tr(),
+                        labelText: AppStrings.username.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppStrings.usernameError,
+                            : AppStrings.usernameError.tr(),
                       ),
                     );
                   },
@@ -118,11 +118,11 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.visiblePassword,
                       controller: _passwordController,
                       decoration: InputDecoration(
-                        hintText: AppStrings.password,
-                        labelText: AppStrings.password,
+                        hintText: AppStrings.password.tr(),
+                        labelText: AppStrings.password.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppStrings.passwordError,
+                            : AppStrings.passwordError.tr(),
                       ),
                     );
                   },
@@ -144,7 +144,7 @@ class _LoginViewState extends State<LoginView> {
                         onPressed: (snapshot.data ?? false)
                             ? () => _viewModel.login()
                             : null,
-                        child: const Text(AppStrings.login),
+                        child: const Text(AppStrings.login).tr(),
                       ),
                     );
                   },
@@ -168,18 +168,17 @@ class _LoginViewState extends State<LoginView> {
                         AppStrings.forgetPassword,
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.end,
-                      ),
+                      ).tr(),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, Routes.registerRoute);
+                        Navigator.pushNamed(context, Routes.registerRoute);
                       },
                       child: Text(
                         AppStrings.register,
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.end,
-                      ),
+                      ).tr(),
                     ),
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:flu_proj/presentation/resourses/langauge_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
@@ -16,7 +17,26 @@ class AppPreferences {
     if (langauge != null && langauge.isNotEmpty) {
       return langauge;
     } else {
-      return LangaugeType.ENGLISH.getValue();
+      return LanguageType.ENGLISH.getValue();
+    }
+  }
+
+  Future<void> changeAppLanguage() async {
+    String currentLang = await getAppLangauge();
+    if (currentLang == LanguageType.ARAIC.getValue()) {
+      _sharedPreferences.setString(
+          PREFS_KEY_LANG, LanguageType.ENGLISH.getValue());
+    } else {
+      _sharedPreferences.setString(
+          PREFS_KEY_LANG, LanguageType.ARAIC.getValue());
+    }
+  }
+  Future<Locale> getLocal() async {
+    String currentLang = await getAppLangauge();
+    if (currentLang == LanguageType.ARAIC.getValue()) {
+      return ARABIC_LOCAL;
+    } else {
+     return ENGLISH_LOCAL;
     }
   }
 
@@ -30,6 +50,7 @@ class AppPreferences {
     return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SCREEN_VIEWWD) ??
         false;
   }
+
   //login screen
 
   Future<void> setLoggedIn() async {
@@ -37,21 +58,10 @@ class AppPreferences {
   }
 
   Future<bool> isLoggedIn() async {
-    return _sharedPreferences.getBool(PREFS_KEY_IS_USER_LOGGED_IN) ??
-        false;
+    return _sharedPreferences.getBool(PREFS_KEY_IS_USER_LOGGED_IN) ?? false;
   }
 
-Future<void>logout()async{
+  Future<void> logout() async {
     _sharedPreferences.remove(PREFS_KEY_IS_USER_LOGGED_IN);
-}
-
-
-
-
-
-
-
-
-
-
+  }
 }
