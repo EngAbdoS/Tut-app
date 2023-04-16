@@ -82,34 +82,38 @@ class _HomePageState extends State<HomePage> {
 
   Widget _getBannerWidget(List<Banners>? banners) {
     if (banners != null) {
-      return CarouselSlider(
-        items: banners
-            .map(
-              (banner) => SizedBox(
-                width: double.infinity,
-                child: Card(
-                  elevation: AppSize.s1_5,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        color: ColorManager.primary, width: AppSize.s1_5),
-                    borderRadius: BorderRadius.circular(AppSize.s12),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppSize.s12),
-                    child: Image.network(
-                      banner.image,
-                      fit: BoxFit.cover,
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppPadding.p8),
+        child: CarouselSlider(
+
+          items: banners
+              .map(
+                (banner) => SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    elevation: AppSize.s1_5,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: ColorManager.primary, width: AppSize.s1_5),
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                      child: Image.network(
+                        banner.image,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-            .toList(),
-        options: CarouselOptions(
-          height: AppSize.s100 * 1.9,
-          autoPlay: true,
-          enableInfiniteScroll: true,
-          enlargeCenterPage: true,
+              )
+              .toList(),
+          options: CarouselOptions(
+            height: AppSize.s100 * 1.9,
+            autoPlay: true,
+            enableInfiniteScroll: true,
+            enlargeCenterPage: true,
+          ),
         ),
       );
     } else {
@@ -131,7 +135,7 @@ class _HomePageState extends State<HomePage> {
             children: services
                 .map(
                   (service) => Card(
-                    elevation: AppSize.s4,
+                    elevation: AppSize.s2,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
                           color: ColorManager.white, width: AppSize.s1_5),

@@ -114,17 +114,33 @@ class _LoginViewState extends State<LoginView> {
                     left: AppPadding.p28, right: AppPadding.p28),
                 child: StreamBuilder<bool>(
                   builder: (context, snapshot) {
-                    return TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        hintText: AppStrings.password.tr(),
-                        labelText: AppStrings.password.tr(),
-                        errorText: (snapshot.data ?? true)
-                            ? null
-                            : AppStrings.passwordError.tr(),
-                      ),
-                    );
+                    return StreamBuilder<bool>(
+                        stream: _viewModel.outputIsPasswordHidden,
+                        builder: (context, hiddenState) {
+                          return TextFormField(
+                            obscureText: hiddenState.data ?? true,
+                            keyboardType: TextInputType.visiblePassword,
+                            controller: _passwordController,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  _viewModel.changePasswordState();
+                                },
+                                icon: Icon(
+                                  (hiddenState.data ?? true)
+                                      ? Icons.remove_red_eye_rounded
+                                      : Icons.remove_red_eye_outlined,
+                                  color: ColorManager.primary,
+                                ),
+                              ),
+                              hintText: AppStrings.password.tr(),
+                              labelText: AppStrings.password.tr(),
+                              errorText: (snapshot.data ?? true)
+                                  ? null
+                                  : AppStrings.passwordInvalid.tr(),
+                            ),
+                          );
+                        });
                   },
                   stream: _viewModel.outputIsPasswordValid,
                 ),

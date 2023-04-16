@@ -57,7 +57,6 @@ class _RegisterViewState extends State<RegisterView> {
     _viewModel.isUserRegisteredSuccessfullyStreamController.stream
         .listen((isLoggedIn) {
       if (isLoggedIn) {
-
         //TODO study ...
         SchedulerBinding.instance.addPostFrameCallback((_) {
           _appPreferences.setLoggedIn();
@@ -144,19 +143,21 @@ class _RegisterViewState extends State<RegisterView> {
                       Expanded(
                         flex: 1,
                         child: CountryCodePicker(
-                          onInit: (country){ _viewModel
-                              .setCountryCode(country!.dialCode??Constants.token);},
-                          onChanged: (country) => _viewModel
-                              .setCountryCode(country.dialCode ?? Constants.token),
+                          onInit: (country) {
+                            _viewModel.setCountryCode(
+                                country!.dialCode ?? Constants.token);
+                          },
+                          onChanged: (country) => _viewModel.setCountryCode(
+                              country.dialCode ?? Constants.token),
                           initialSelection: '+20',
-                          favorite: const ['+20','+39', 'FR', '+966'],
+                          favorite: const ['+20', '+39', 'FR', '+966'],
                           showOnlyCountryWhenClosed: true,
                           showCountryOnly: true,
                           hideMainText: true,
                         ),
                       ),
                       Expanded(
-                        flex: 4,
+                        flex: 3,
                         child: StreamBuilder<String?>(
                           stream: _viewModel.outputErrorMobileNumber,
                           builder: (context, snapshot) {
@@ -203,14 +204,30 @@ class _RegisterViewState extends State<RegisterView> {
                     left: AppPadding.p28, right: AppPadding.p28),
                 child: StreamBuilder<String?>(
                   builder: (context, snapshot) {
-                    return TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: _passwordEditingController,
-                      decoration: InputDecoration(
-                          hintText: AppStrings.password.tr(),
-                          labelText: AppStrings.password.tr(),
-                          errorText: snapshot.data?.tr()),
-                    );
+                    return StreamBuilder<bool>(
+                        stream: _viewModel.outputIsPasswordHidden,
+                        builder: (context, hiddenState) {
+                          return TextFormField(
+                            obscureText: hiddenState.data ?? true,
+                            keyboardType: TextInputType.visiblePassword,
+                            controller: _passwordEditingController,
+                            decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    _viewModel.changePasswordState();
+                                  },
+                                  icon: Icon(
+                                    (hiddenState.data ?? true)
+                                        ? Icons.remove_red_eye_rounded
+                                        : Icons.remove_red_eye_outlined,
+                                    color: ColorManager.primary,
+                                  ),
+                                ),
+                                hintText: AppStrings.password.tr(),
+                                labelText: AppStrings.password.tr(),
+                                errorText: snapshot.data?.tr()),
+                          );
+                        });
                   },
                   stream: _viewModel.outputErrorPassword,
                 ),
@@ -221,14 +238,16 @@ class _RegisterViewState extends State<RegisterView> {
               Padding(
                 padding: const EdgeInsets.only(
                     left: AppPadding.p28, right: AppPadding.p28),
-                child: GestureDetector(onTap: () {
-                  _showPicker(context);
-                },
+                child: GestureDetector(
+                  onTap: () {
+                    _showPicker(context);
+                  },
                   child: SizedBox(
                     height: AppSize.s40,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius:const BorderRadius.all(Radius.circular(AppSize.s8)),
+                          borderRadius: const BorderRadius.all(
+                              Radius.circular(AppSize.s8)),
                           border: Border.all(color: ColorManager.gray)),
                       child: _getMediaWidget(),
                     ),
@@ -326,7 +345,7 @@ class _RegisterViewState extends State<RegisterView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-           Flexible(
+          Flexible(
             child: const Text(AppStrings.profilePicture).tr(),
           ),
           Flexible(
@@ -334,7 +353,8 @@ class _RegisterViewState extends State<RegisterView> {
               stream: _viewModel.outputIsProfilePictureValid,
               builder: (context, snapshot) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: AppPadding.p8*0.2,bottom:  AppPadding.p8*0.2),
+                  padding: const EdgeInsets.only(
+                      top: AppPadding.p8 * 0.2, bottom: AppPadding.p8 * 0.2),
                   child: _pickedImage(snapshot.data),
                 );
               },

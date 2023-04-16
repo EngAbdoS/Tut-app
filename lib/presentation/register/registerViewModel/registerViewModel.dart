@@ -26,8 +26,10 @@ class RegisterViewModel extends BaseViewModel
   StreamController isUserRegisteredSuccessfullyStreamController =
       StreamController<bool>();
   final RegisterUseCase _registerUseCase;
-
+  final StreamController _isPasswordHiddenStreamController =
+  StreamController<void>.broadcast();
   RegisterViewModel(this._registerUseCase);
+  bool? _isHidden;
 
   var registerObject = RegisterObject("", "", "", "", "", "");
 
@@ -81,7 +83,8 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Sink get inputPassword => passwordStreamController.sink;
-
+  @override
+  Sink get inputPasswordHideState => _isPasswordHiddenStreamController.sink;
   @override
   Sink get inputProfilePicture => profilePictureStreamController.sink;
 
@@ -178,7 +181,8 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<bool> get outputIsPasswordValid => passwordStreamController.stream
       .map((password) => _isPasswordValid(password));
-
+  @override
+  Stream<bool> get outputIsPasswordHidden => _isPasswordHiddenStreamController.stream.map((hidden) => hidden);
   @override
   Stream<String?> get outputErrorPassword =>
       outputIsPasswordValid.map((isPasswordValid) =>
@@ -219,6 +223,24 @@ class RegisterViewModel extends BaseViewModel
     inputAreAllInputsValid.add(null);
     //بنده علي الاستريم و بمشي قيمة فيه
   }
+
+
+
+
+
+  @override
+  changePasswordState(){
+    if(_isHidden==true){
+      _isHidden=false;
+      _isPasswordHiddenStreamController.add(false);
+    }
+    else
+    {
+      _isHidden=true;
+      _isPasswordHiddenStreamController.add(true);
+    }
+
+  }
 }
 
 abstract class RegisterViewModelInputs {
@@ -229,6 +251,7 @@ abstract class RegisterViewModelInputs {
   Sink get inputEmail;
 
   Sink get inputPassword;
+  Sink get inputPasswordHideState;
 
   Sink get inputProfilePicture;
 
@@ -243,7 +266,7 @@ abstract class RegisterViewModelInputs {
   setCountryCode(String countryCode);
 
   setPassword(String password);
-
+  changePasswordState();
   setEmail(String email);
 
   setProfilePicture(File profilePicture);
@@ -263,6 +286,7 @@ abstract class RegisterViewModelOutputs {
   Stream<String?> get outputErrorEmail;
 
   Stream<bool> get outputIsPasswordValid;
+  Stream<bool> get outputIsPasswordHidden;
 
   Stream<String?> get outputErrorPassword;
 

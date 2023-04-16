@@ -15,7 +15,9 @@ class LoginViewModel extends BaseViewModel
   final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
   final StreamController _areAllInputsValidStreamController =
-      StreamController<void>.broadcast();
+  StreamController<void>.broadcast();
+  final StreamController _isPasswordHiddenStreamController =
+  StreamController<void>.broadcast();
 
   var loginObject = LoginObject("", "");
 
@@ -23,6 +25,7 @@ class LoginViewModel extends BaseViewModel
 
   StreamController isUserLoggedInSuccessfullyStreamController =
       StreamController<bool>();
+bool? _isHidden;
 
   //login
 
@@ -32,6 +35,7 @@ class LoginViewModel extends BaseViewModel
     _passwordStreamController.close();
     _userNameStreamController.close();
     _areAllInputsValidStreamController.close();
+    _isPasswordHiddenStreamController.close();
   }
 
   @override
@@ -87,7 +91,7 @@ class LoginViewModel extends BaseViewModel
   }
 
   bool _isPasswordValid(String password) {
-    return password.isNotEmpty;
+    return password.length >= 6;
   }
 
   bool _isUserNameValid(String userName) {
@@ -106,18 +110,42 @@ class LoginViewModel extends BaseViewModel
     return _isUserNameValid(loginObject.userName) &&
         _isPasswordValid(loginObject.password);
   }
+
+  @override
+  Sink get inputPasswordHideState => _isPasswordHiddenStreamController.sink;
+
+  @override
+  Stream<bool> get outputIsPasswordHidden => _isPasswordHiddenStreamController.stream.map((hidden) => hidden);
+  @override
+  changePasswordState(){
+    if(_isHidden==true){
+      _isHidden=false;
+      _isPasswordHiddenStreamController.add(false);
+    }
+    else
+      {
+        _isHidden=true;
+        _isPasswordHiddenStreamController.add(true);
+      }
+
+  }
+
+
+
 }
 
 abstract class LoginViewModelInputs {
   setUserName(String userName);
 
   setPassword(String password);
-
+  changePasswordState();
   login();
 
   Sink get inputUserName;
 
   Sink get inputPassword;
+
+  Sink get inputPasswordHideState;
 
   Sink get inputValidation;
 }
@@ -126,6 +154,8 @@ abstract class LoginViewModelOutputs {
   Stream<bool> get outputIsUserNameValid;
 
   Stream<bool> get outputIsPasswordValid;
+
+  Stream<bool> get outputIsPasswordHidden;
 
   Stream<bool> get outputAreAllDataValid;
 }
