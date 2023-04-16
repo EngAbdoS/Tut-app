@@ -50,6 +50,10 @@ class AppStrings {
   static const String notification = "Notifications";
   static const String services = "Services";
   static const String stores = "Stores";
+  static const String changeLanguage = "Change Language";
+  static const String contactUS = "Contact US";
+  static const String inviteFriends = "Invite Your Friends";
+  static const String logout = "Logout";
 
 
 
