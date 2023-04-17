@@ -1,18 +1,27 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <title>Tut-app</title> </head> <body> <h1>Tut-app</h1> <p>Tut-app is a Flutter application built with Dart that provides a platform for training. It uses mock APIs to simulate backend services and implements clean architecture, MVVM, dependency injection, error handling, localization, caching, Dio, state flow, state rendering, stream controllers, and more.</p>
-    <h2>Screenshots</h2>
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
- <img src="screenShots\1.jpg" alt="Girl in a jacket" width="270" height="500">
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    </head>
+    <body> <h1>Tut-app</h1> <p>Tut-app is a Flutter application built with Dart that provides a platform for training. It uses mock APIs to simulate backend services and implements clean architecture, MVVM, dependency injection, error handling, localization, caching, Dio, state flow, state rendering, stream controllers, and more.</p>
+    <h1>Screenshots</h1>
+ ![My Image](screenShots\1.jpg)
+ 
+ ![My Image](screenShots\2.jpg)
+ 
+ ![My Image](screenShots\3.jpg)
+ 
+ ![My Image](screenShots\4.jpg)
+ 
+ ![My Image](screenShots\5.jpg)
+ 
+ ![My Image](screenShots\6.jpg)
+ 
+ ![My Image](screenShots\7.jpg)
+ 
+ ![My Image](screenShots\8.jpg)
     
-    <h2>Features</h2>
+    <h1>Features</h1>
     <ul>
-        <li><strong>Login Screen:</strong> Users can log in to their accounts with their email and password. The screen also includes validation for the email and password fields.</li>
-        <li><strong>Forgot Password Screen:</strong> Users can reset their password by entering their email address.</li>
+        <li><h1>Login Screen:</h1> Users can log in to their accounts with their email and password. The screen also includes validation for the email and password fields.</li>
+        <li><h3>Forgot Password Screen:</h3> Users can reset their password by entering their email address.</li>
         <li><strong>Register Screen:</strong> New users can create an account by entering their name, email address, and password. The screen also includes validation for all fields.</li>
         <li><strong>Home Screen:</strong> The main screen of the application contains a banner section and a services slider. Users can access the stores and settings screens from here.</li>
         <li><strong>Stores Screen:</strong> This screen displays a list of all the stores available in the application. Users can tap on a store to view its details.</li>
