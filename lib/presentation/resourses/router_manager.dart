@@ -4,7 +4,7 @@ import 'package:flu_proj/presentation/main/main_view.dart';
 import 'package:flu_proj/presentation/onboarding/view/onboarding_view.dart';
 import 'package:flu_proj/presentation/resourses/strings_manager.dart';
 import 'package:flu_proj/presentation/spalsh/spalsh_view.dart';
-import 'package:flu_proj/presentation/store_details/store_details_view.dart';
+import 'package:flu_proj/presentation/store_details/view/store_details_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/di.dart';
@@ -40,6 +40,7 @@ class RouteGenerator {
         initHomeModule();
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
+        initStoreDetailsModule();
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
       default:
         return unDefinedRoute();

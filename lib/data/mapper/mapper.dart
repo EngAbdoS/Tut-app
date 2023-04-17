@@ -55,6 +55,17 @@ extension StoreResponseMapper on StoresResponse? {
   }
 }
 
+extension StoreDetailsResponseMapper on StoreDetailsResponse? {
+  StoreDetails toDomain() {
+    return StoreDetails(
+        this?.id?.orZero() ?? Constants.zero,
+        this?.title?.orEmpty() ?? Constants.empty,
+        this?.image?.orEmpty() ?? Constants.empty,
+        this?.details?.orEmpty() ?? Constants.empty,
+        this?.services?.orEmpty() ?? Constants.empty,
+        this?.about?.orEmpty() ?? Constants.empty);
+  }
+}
 extension HomeResponseMapper on HomeResponse? {
   HomeObject toDomain() {
     List<Service> services = (this?.data?.services?.map((e) => e.toDomain()) ??
